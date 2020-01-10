@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  protect_from_forgery except: :index
   before_action :set_event, only: [:show, :update, :destroy]
 
   # GET /events
