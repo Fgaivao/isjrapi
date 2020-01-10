@@ -16,9 +16,14 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-   @events = Event.all
 
-    render json: @events
+    @event = Event.new(event_params)
+
+    if @event.save
+      render json: @event, status: :created, location: @event
+    else
+      render json: @event.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /events/1
@@ -42,7 +47,8 @@ class EventsController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
+    protected
     def event_params
-      params.permit(:event).permit(:day, :time, :description, :title)
+      params.permit(:day, :time, :description, :title)
     end
 end
