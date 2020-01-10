@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  protect_from_forgery except: :index
+ skip_before_action :verify_authenticity_token
   before_action :set_event, only: [:show, :update, :destroy]
 
   # GET /events
@@ -16,13 +16,9 @@ class EventsController < ApplicationController
 
   # POST /events
   def create
-    @event = Event.new(event_params)
+   @events = Event.all
 
-    if @event.save
-      render json: @event, status: :created, location: @event
-    else
-      render json: @event.errors, status: :unprocessable_entity
-    end
+    render json: @events
   end
 
   # PATCH/PUT /events/1
