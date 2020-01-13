@@ -40,6 +40,36 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
+  def dayone
+    @events = Event.where(day: 'Day 1')
+
+    render json: @events
+  end
+
+  def daytwo
+    @events = Event.where(day: 'Day 2')
+
+    render json: @events
+  end
+
+  def daythree
+    @events = Event.where(day: 'Day 3')
+
+    render json: @events
+  end
+
+  def dayfour
+    @events = Event.where(day: 'Day 4')
+
+    render json: @events
+  end
+
+  def dayfive
+    @events = Event.where(day: 'Day 5')
+
+    render json: @events
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
